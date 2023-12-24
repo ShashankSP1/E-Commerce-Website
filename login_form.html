@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-image: url('Images/signup.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+
+    }
+
+    .content {
+      padding: 20px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .login-container {
+      width: 300px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-container h2 {
+      color: #333;
+      text-align: center;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .login-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #057a22;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .login-form button:hover {
+      background-color: #059630;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="login-container" id="loginPage" >
+  <h2>Login Form</h2>
+
+  <form class="login-form" action="index.html" method="post" onsubmit="return validateForm()">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" placeholder="Username" required>
+    <span id="usernameError" class="error"></span><br>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" placeholder="Password" required>
+    <span id="passwordError" class="error"></span><br>
+
+    <div style="margin-bottom: 15px; font-size: smaller;">By continuing, you agree to Company's <a target="_blank"
+        href="/pages/terms" style="text-decoration: none;">Terms of Use</a> and <a target="_blank"
+        href="/pages/privacypolicy" style="text-decoration: none;">Privacy Policy</a>.
+    </div>
+
+    <button type="submit" onsubmit="redirect()">Sign Up</button>
+    <a href="signup.html" style="text-decoration: none; margin-top: 10px;">If Not registered? SignUp</a>
+  </form>
+</div>
+
+<script>
+  function validateForm() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    // Reset error messages
+    document.getElementById("usernameError").innerHTML = "";
+    document.getElementById("passwordError").innerHTML = "";
+
+    // Validate username
+    if (username === "") {
+      document.getElementById("usernameError").innerHTML = "Username is required";
+      return false;
+    }
+
+    // Validate password
+    if (password.length < 10) {
+      document.getElementById("passwordError").innerHTML = "Password must be at least 10 characters";
+      return false;
+    }
+
+    alert("Form submitted successfully!");
+    return true;
+  }
+  function redirect(){
+        window.location.href = "index.html";
+    }
+</script>
+
+<script>
+  function login() {
+    // For simplicity, assume the login is successful (you would usually check credentials with a server)
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+
+    // Check credentials (dummy check, replace with actual authentication logic)
+    if (username === "example" && password === "password") {
+        // Hide the login page
+        document.getElementById("loginPage").style.display = "none";
+
+        // Show the landing page
+        document.getElementById("landingPage").style.display = "block";
+
+        // Display success message
+        document.getElementById("successMessage").innerText = "Login successful! Welcome, " + username + "!";
+    } else {
+        // Handle unsuccessful login (show an error message, redirect, etc.)
+        alert("Invalid credentials. Please try again.");
+    }
+}   
+
+</script>
+
+</body>
+</html>
+
